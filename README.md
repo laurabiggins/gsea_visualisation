@@ -21,3 +21,22 @@ gsea_results  <- gseGO(
   maxGSSize    = 200
 )
 ```
+
+The second gsea_results object on the sftp site was generated using this code:
+
+```
+library(DOSE)
+data(geneList)
+
+ranks <- geneList
+
+gsea_results  <- gseGO(
+  geneList     = ranks,
+  ont          = "ALL",
+  OrgDb        = org.Hs.eg.db,
+  keyType      = "ENTREZID",
+  pvalueCutoff = Inf,
+  minGSSize    = 10,
+  maxGSSize    = 200
+)
+```
