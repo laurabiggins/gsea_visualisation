@@ -23,6 +23,10 @@ cutoff_max <- max(cutoff_values)
 sliderInput("n_breaks", label = "Simplify cutoff:",
               min = cutoff_min, max = cutoff_max, value = cutoff_min,
               step = cutoff_step, ticks = FALSE)
+
+radioButtons("direction", label = "Direction:",
+              choices = c("Up" = "up", "Down" = "down"),
+              selected = "up", inline = TRUE)
 ```
 
 ```{r echo = FALSE, message = FALSE, warning = FALSE}
@@ -91,7 +95,7 @@ renderPlot({
   cutoff_key <- as.character(round(input$n_breaks, 1))
   gsea_results <- simplified_views[[cutoff_key]]
 
-  gsea_up_graph <- make_gsea_graph(gsea_results, up=TRUE)
-  gsea_up_graph[[1]]
+  gsea_graph <- make_gsea_graph(gsea_results, up = (input$direction == "up"))
+  gsea_graph[[1]]
 })
 ```
