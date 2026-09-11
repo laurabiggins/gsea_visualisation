@@ -120,7 +120,7 @@ make_gsea_graph <- function(
       mutate(
         size = lengths(strsplit(core_enrichment, "/"))
       ) |>
-      select(Description, size) -> node_size
+      dplyr::select(Description, size) -> node_size
     
     data_graph <- data_graph |>
       activate(nodes) |>
@@ -135,7 +135,7 @@ make_gsea_graph <- function(
   if (!is.null(metrics)) {
     
     data@result |>
-      select(
+      dplyr::select(
         Description,
         all_of(metrics)
       ) -> node_metric
